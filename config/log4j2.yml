@@ -1,0 +1,54 @@
+Configuration:
+
+  properties:
+    Property:
+      - name: "LOG_PATH"
+        value: "./logs/auth-server"
+      - name: "LOG_LIFE_TIME"
+        value: "30d"
+
+  appenders:
+    RollingFile:
+      - name: LogToRollingFile
+        fileName: "${LOG_PATH}/full"
+        filePattern: "${LOG_PATH}/full_%d{yyyy-MM-dd}.log"
+        PatternLayout:
+          pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] %m%n"
+        Policies:
+          TimeBasedTriggeringPolicy:
+            interval: 1
+        DefaultRollOverStrategy:
+          max: 10
+          Delete:
+            basePath: "${LOG_PATH}"
+            maxDepth: 1
+            IfLastModified:
+              age: "${LOG_LIFE_TIME}"
+            IfFileName:
+              glob: "*.log"
+  Loggers:
+    logger:
+      - name: org.buriy.medved
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: LogToRollingFile
+      - name: org.springframework
+        level: warn
+        additivity: false
+        AppenderRef:
+          - ref: LogToConsole
+          - ref: LogToRollingFile
+      - name: org.atmosphere.cpr.AtmosphereFramework
+        level: warn
+        additivity: false
+        AppenderRef:
+          - ref: LogToConsole
+
+    Root:
+      level: info
+      AppenderRef:
+        - ref: LogToRollingFile
+
+
+

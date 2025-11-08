@@ -7,6 +7,10 @@ plugins {
     id("org.jetbrains.kotlin.plugin.spring") version "${kotlinVersion}"
     id("org.jetbrains.kotlin.plugin.allopen") version "${kotlinVersion}"
     id("org.springframework.boot") version "${springBootVersion}"
+
+//    id("org.openapitools:openapi-generator-gradle-plugin") version "${openAiGeneratorPluginVersion}"
+    id("org.openapi.generator") version "${openAiGeneratorPluginVersion}"
+
 }
 
 group = 'org.buriy.medved'
@@ -24,6 +28,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
 
     implementation "org.springframework.ai:spring-ai-starter-model-openai:${springOpenAiVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-log4j2:${springBootVersion}"
 
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonDatabindVersion}"
     implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonDatabindVersion}"
@@ -50,6 +55,10 @@ test {
 
 kotlin {
     jvmToolchain(24)
+}
+
+configurations.configureEach {
+    exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
 }
 
 dependencyManagement {

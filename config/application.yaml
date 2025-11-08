@@ -19,6 +19,15 @@ spring:
       base-url: http://localhost:1234
       chat:
         options:
-          model: qwen/qwen3-4b-2507
+#          model: qwen/qwen3-4b-2507
+          model: qwen/qwen3-vl-4b
 #          temperature: 1
-          
+#  http:
+#    client:
+#      connect-timeout: 30s
+#      read-timeout: 120s
+
+upload:
+  dir: >-
+     D:\temp\uploads 
+
