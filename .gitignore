@@ -25,3 +25,7 @@ replay_pid*
 /build/
 /.idea/
 /.gradle/
+/src/main/frontend/generated/
+/.kotlin/
+/node_modules/
+/target/
