@@ -1,0 +1,65 @@
+plugins {
+    id "java"
+
+    id("io.spring.dependency-management") version "${springDmVersion}"
+    id("org.jetbrains.kotlin.jvm") version "${kotlinVersion}"
+    id("org.jetbrains.kotlin.kapt") version "${kotlinVersion}"
+    id("org.jetbrains.kotlin.plugin.spring") version "${kotlinVersion}"
+    id("org.jetbrains.kotlin.plugin.allopen") version "${kotlinVersion}"
+    id("org.springframework.boot") version "${springBootVersion}"
+}
+
+group = 'org.buriy.medved'
+version = '1.0.0'
+
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
+
+    implementation "org.springframework.ai:spring-ai-starter-model-openai:1.0.1"
+
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonDatabindVersion}"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonDatabindVersion}"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${jacksonDatabindVersion}"
+
+    implementation "com.vaadin:vaadin-spring-boot-starter:${vaadinVersion}"
+    implementation "com.vaadin:vaadin-core:${vaadinVersion}"
+    implementation "com.vaadin:vaadin-board-flow:${vaadinVersion}"
+    implementation "com.vaadin:vaadin-charts-flow:${vaadinVersion}"
+    implementation "com.vaadin:vaadin-map-flow:${vaadinVersion}"
+    implementation "com.vaadin:vaadin-rich-text-editor-flow:${vaadinVersion}"
+
+    implementation "com.itextpdf:itext-core:${itextCoreVersion}"
+    implementation "org.parttio:line-awesome:${lineAwesomeVersion}"
+
+    testImplementation "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonKotlinVersion}"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    testImplementation "org.jetbrains.kotlin:kotlin-test:${kotlinVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+kotlin {
+    jvmToolchain(24)
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "com.vaadin:vaadin-bom:${vaadinVersion}"
+    }
+}
+
+
+
+
+
+
