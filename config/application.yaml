@@ -1,6 +1,7 @@
 server:
   port: 8080
 
+#в dev-config можно переопределить для своих настроек логера
 #logging:
 #  config: >-
 #    file:./config/log4j2.yml
@@ -22,11 +23,14 @@ spring:
 #          model: qwen/qwen3-4b-2507
           model: qwen/qwen3-vl-4b
 #          temperature: 1
+
+#  Не работают, смотри настройки в методе LmStudioConfig::chatModel
 #  http:
 #    client:
 #      connect-timeout: 30s
 #      read-timeout: 120s
 
+#Директория куда будут загружаться временные файлы
 upload:
   dir: >-
      D:\temp\uploads 
