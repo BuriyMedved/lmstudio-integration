@@ -9,10 +9,12 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.retry.backoff.FixedBackOffPolicy
 import org.springframework.retry.policy.TimeoutRetryPolicy
 import org.springframework.retry.support.RetryTemplate
+import org.springframework.transaction.annotation.EnableTransactionManagement
 import java.time.Duration
 
 
 @Configuration
+@EnableTransactionManagement
 class LmStudioConfig {
     @Value("\${spring.ai.openai.base-url}")
     private val baseUrl: String? = null

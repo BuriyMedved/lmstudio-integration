@@ -19,6 +19,7 @@ import com.vaadin.flow.server.streams.UploadMetadata
 import com.vaadin.flow.theme.lumo.LumoUtility
 import org.buriy.medved.backend.dto.Message
 import org.buriy.medved.backend.service.AIService
+import org.buriy.medved.backend.service.EmbeddingsService
 import org.buriy.medved.backend.service.FileUploadService
 import org.buriy.medved.frontend.MainLayout
 import org.slf4j.LoggerFactory
@@ -30,11 +31,12 @@ import java.time.Instant
 @CssImport(value = "./styles/components/common.css")
 class ChatView(
     private val aiService: AIService,
-    private val uploadService: FileUploadService
+    private val uploadService: FileUploadService,
 ): VerticalLayout(), HasDynamicTitle  {
 
     companion object {
         private val logger = LoggerFactory.getLogger(ChatView::class.java)
+        const val TITLE = "Чат"
     }
 
     private val greetingsTitle = "HELLO!"
@@ -43,9 +45,6 @@ class ChatView(
 
     init {
         add(H2(greetingsTitle))
-
-        val commentsList = MessageList()
-        add(commentsList)
 
         val list = MessageList()
         list.isMarkdown = true
@@ -194,6 +193,6 @@ class ChatView(
     }
 
     override fun getPageTitle(): String {
-        return "Чат"
+        return TITLE
     }
 }

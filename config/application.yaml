@@ -13,7 +13,36 @@ vaadin:
   # Launch the default browser when starting the application in development mode
   launch-browser: false
 
+postgres:
+  port: 5432
+
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:${postgres.port}/embeddings
+    username: postgres
+    password: 12345678
+    driver-class-name: org.postgresql.Driver
+
+    hikari:
+      pool-name: MainPool
+      minimum-idle: 3
+      maximum-pool-size: 50
+      idle-timeout: 30000
+      max-lifetime: 180000
+      connection-timeout: 30000
+      initialization-fail-timeout: 90000
+      auto-commit: false
+      transaction-isolation: 2 #TRANSACTION_READ_COMMITTED
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: true
+    properties:
+      jakarta:
+        persistence:
+          validation:
+            mode: none
+    hibernate:
+      ddl-auto: update
   ai:
     openai:
       api-key: not-used
@@ -23,7 +52,9 @@ spring:
 #          model: qwen/qwen3-4b-2507
           model: qwen/qwen3-vl-4b
 #          temperature: 1
-
+      embedding:
+        options:
+          model: text-embedding-mxbai-embed-large-v1
 #  Не работают, смотри настройки в методе LmStudioConfig::chatModel
 #  http:
 #    client:
@@ -33,5 +64,8 @@ spring:
 #Директория куда будут загружаться временные файлы
 upload:
   dir: >-
-     D:\temp\uploads 
+     D:\temp\uploads
+embeddings:
+  dir: >-
+    D:\temp\embeddings     
 

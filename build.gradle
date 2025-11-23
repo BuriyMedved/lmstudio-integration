@@ -1,21 +1,33 @@
 plugins {
     id "java"
 
-    id("io.spring.dependency-management") version "${springDmVersion}"
-    id("org.jetbrains.kotlin.jvm") version "${kotlinVersion}"
-    id("org.jetbrains.kotlin.kapt") version "${kotlinVersion}"
-    id("org.jetbrains.kotlin.plugin.spring") version "${kotlinVersion}"
-    id("org.jetbrains.kotlin.plugin.allopen") version "${kotlinVersion}"
-    id("org.springframework.boot") version "${springBootVersion}"
+    id "io.spring.dependency-management" version "${springDmVersion}"
+    id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
+    id "org.jetbrains.kotlin.kapt" version "${kotlinVersion}"
+    id "org.jetbrains.kotlin.plugin.jpa" version "${kotlinVersion}"
+    id "org.jetbrains.kotlin.plugin.spring" version "${kotlinVersion}"
+    id "org.jetbrains.kotlin.plugin.allopen" version "${kotlinVersion}"
+    id "org.springframework.boot" version "${springBootVersion}"
 
 //    id("org.openapitools:openapi-generator-gradle-plugin") version "${openAiGeneratorPluginVersion}"
-    id("org.openapi.generator") version "${openAiGeneratorPluginVersion}"
+    id "org.openapi.generator" version "${openAiGeneratorPluginVersion}"
 
+    id "org.jetbrains.kotlin.plugin.noarg" version "${kotlinVersion}"
 }
 
 group = 'org.buriy.medved'
 version = '1.0.0'
 
+noArg {
+    annotation("org.buriy.medved.backend.annotation.NoArg")
+}
+
+allOpen {
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Embeddable")
+    annotation("jakarta.persistence.ElementCollection")
+}
 
 repositories {
     mavenCentral()
@@ -23,6 +35,9 @@ repositories {
 }
 
 dependencies {
+    kapt "org.mapstruct:mapstruct-processor:${mapStructVersion}"
+    implementation "org.mapstruct:mapstruct:${mapStructVersion}"
+
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
     implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
@@ -47,6 +62,14 @@ dependencies {
     testImplementation "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonKotlinVersion}"
     testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
     testImplementation "org.jetbrains.kotlin:kotlin-test:${kotlinVersion}"
+
+    implementation "org.postgresql:postgresql:${pgDriverVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+
+    implementation "org.apache.tika:tika-core:${tikaVersion}"
+    implementation "org.apache.tika:tika-parsers-standard-package:${tikaVersion}"
+    implementation "org.apache.tika:tika-parser-pdf-module:${tikaVersion}"
+
 }
 
 test {

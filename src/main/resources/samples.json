@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Smartphone A",
+    "description": "5G smartphone with AMOLED display and 128GB storage."
+  },
+  {
+    "id": 2,
+    "name": "Smartphone B",
+    "description": "4G smartphone with IPS screen and 64GB storage."
+  },
+  {
+    "id": 3,
+    "name": "Wireless Headphones",
+    "description": "Bluetooth headphones with active noise cancellation."
+  },
+  {
+    "id": 4,
+    "name": "Smartwatch X",
+    "description": "Fitness smartwatch with heart rate monitor and AMOLED display."
+  },
+  {
+    "id": 5,
+    "name": "Tablet Pro",
+    "description": "10-inch tablet with 4GB RAM and 64GB storage."
+  },
+  {
+    "id": 6,
+    "name": "Bluetooth Speaker",
+    "description": "Portable speaker with 12-hour battery life and waterproof design."
+  },
+  {
+    "id": 7,
+    "name": "Gaming Laptop",
+    "description": "High-performance laptop with RTX 3060 GPU and 16GB RAM."
+  },
+  {
+    "id": 8,
+    "name": "External SSD",
+    "description": "1TB external SSD with USB-C for fast data transfer."
+  },
+  {
+    "id": 9,
+    "name": "4K Monitor",
+    "description": "27-inch monitor with 4K resolution and HDR support."
+  },
+  {
+    "id": 10,
+    "name": "Wireless Mouse",
+    "description": "Ergonomic wireless mouse with adjustable DPI."
+  }
+]
